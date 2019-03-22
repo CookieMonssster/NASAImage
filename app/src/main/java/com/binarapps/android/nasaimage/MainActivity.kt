@@ -2,7 +2,6 @@ package com.binarapps.android.nasaimage
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.binarapps.android.nasanetwork.model.NasaImage
 
 class MainActivity : AppCompatActivity() {
 
