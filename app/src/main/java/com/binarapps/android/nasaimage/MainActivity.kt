@@ -13,21 +13,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val nasa = NasaRepository()
-
-        val search = "earth"
-
-        nasa.getNasaImage(search)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeBy(
-            onSuccess = {
-                Log.e("klop", "search for: $search, elements: ${it.size}")
-                it.forEach { Log.e("klop", "title: ${it.title}") }
-            },
-            onError = { Log.e("klop", "some errors :( ${it.message}") }
-        )
-
     }
 }
