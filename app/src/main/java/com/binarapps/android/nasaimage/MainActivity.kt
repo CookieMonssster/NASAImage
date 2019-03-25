@@ -1,5 +1,6 @@
 package com.binarapps.android.nasaimage
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupRecyclerView()
+        viewModel.liveData.observe(this, Observer { nasaAdapter.setList(it) })
         viewModel.fetchImages()
     }
 
