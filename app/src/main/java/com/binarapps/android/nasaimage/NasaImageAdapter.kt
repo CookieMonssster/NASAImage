@@ -27,7 +27,6 @@ class NasaImageAdapter : RecyclerView.Adapter<NasaImageViewHolder>() {
         itemList = data
         notifyDataSetChanged()
     }
-
 }
 
 class NasaImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -36,6 +35,7 @@ class NasaImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.listItemTitle.text = nasaImage.title
         Glide.with(itemView.context)
             .load(nasaImage.image)
+            .fitCenter()
             .into(itemView.listItemImage)
     }
 
