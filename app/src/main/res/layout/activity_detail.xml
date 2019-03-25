@@ -28,6 +28,7 @@
             android:id="@+id/detaiDescription"
             app:layout_constraintTop_toBottomOf="@id/detailTitle"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             tools:text="Description"
             android:layout_marginTop="16dp"
