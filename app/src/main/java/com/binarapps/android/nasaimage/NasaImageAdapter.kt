@@ -8,19 +8,20 @@ import com.binarapps.android.nasanetwork.model.NasaImage
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class NasaImageAdapter : RecyclerView.Adapter<NasaImageViewHolder>() {
+class NasaImageAdapter(private val listener: NasaImageAdapterListener) : RecyclerView.Adapter<NasaImageViewHolder>() {
 
     private var itemList = emptyList<NasaImage>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NasaImageViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        return NasaImageViewHolder(view)
+        return NasaImageViewHolder(view, listener)
     }
 
     override fun getItemCount() = itemList.size
 
     override fun onBindViewHolder(holder: NasaImageViewHolder, position: Int) {
         holder.setData(itemList[position])
+
     }
 
     fun setList(data: List<NasaImage>?) {
@@ -31,7 +32,7 @@ class NasaImageAdapter : RecyclerView.Adapter<NasaImageViewHolder>() {
     }
 }
 
-class NasaImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class NasaImageViewHolder(view: View, private val listener: NasaImageAdapterListener) : RecyclerView.ViewHolder(view) {
 
     fun setData(nasaImage: NasaImage) {
         itemView.listItemTitle.text = nasaImage.title
@@ -39,6 +40,11 @@ class NasaImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             .load(nasaImage.image)
             .centerCrop()
             .into(itemView.listItemImage)
+        itemView.setOnClickListener { listener.onItemClicked(nasaImage) }
     }
 
+}
+
+interface NasaImageAdapterListener {
+    fun onItemClicked(nasaImage: NasaImage)
 }
