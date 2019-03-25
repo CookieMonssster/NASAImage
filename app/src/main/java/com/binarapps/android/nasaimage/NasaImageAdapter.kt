@@ -23,9 +23,11 @@ class NasaImageAdapter : RecyclerView.Adapter<NasaImageViewHolder>() {
         holder.setData(itemList[position])
     }
 
-    fun setList(data: List<NasaImage>) {
-        itemList = data
-        notifyDataSetChanged()
+    fun setList(data: List<NasaImage>?) {
+        data?.let {
+            itemList = it
+            notifyDataSetChanged()
+        }
     }
 }
 
@@ -35,7 +37,7 @@ class NasaImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.listItemTitle.text = nasaImage.title
         Glide.with(itemView.context)
             .load(nasaImage.image)
-            .fitCenter()
+            .centerCrop()
             .into(itemView.listItemImage)
     }
 
