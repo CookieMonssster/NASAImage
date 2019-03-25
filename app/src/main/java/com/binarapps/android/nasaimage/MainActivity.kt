@@ -11,13 +11,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NasaImageAdapterListener {
 
-    override fun onItemClicked(nasaImage: NasaImage) {
-        val nasaImageJson = Gson().toJson(nasaImage)
-        val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra("image", nasaImageJson)
-        startActivity(intent)
-    }
-
     private val viewModel = MainViewModel()
 
     private val nasaAdapter = NasaImageAdapter(this)
@@ -35,5 +28,12 @@ class MainActivity : AppCompatActivity(), NasaImageAdapterListener {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = nasaAdapter
         }
+    }
+
+    override fun onItemClicked(nasaImage: NasaImage) {
+        val nasaImageJson = Gson().toJson(nasaImage)
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("image", nasaImageJson)
+        startActivity(intent)
     }
 }
