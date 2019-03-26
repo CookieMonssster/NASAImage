@@ -7,10 +7,39 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler"
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            tools:listitem="@layout/list_item"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="8" android:background="@color/colorPrimary">
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:id="@+id/findPlanetText" android:layout_weight="1" tools:ignore="NestedWeights"
+                    android:hint="@string/planet" android:textColor="@android:color/holo_blue_dark"
+                    android:textColorLink="@android:color/holo_blue_dark" android:textStyle="bold"
+                    android:textColorHighlight="@android:color/holo_blue_dark"
+                    android:textColorHint="@android:color/holo_blue_dark" android:selectAllOnFocus="false"/>
+            <Button
+                    android:text="@string/find"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/subQuerryButton"
+                    app:layout_constraintEnd_toStartOf="@+id/recycler" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_weight="4" android:background="@android:color/holo_blue_dark"/>
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                tools:listitem="@layout/list_item"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
