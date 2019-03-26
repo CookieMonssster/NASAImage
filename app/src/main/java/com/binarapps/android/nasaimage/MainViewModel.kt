@@ -7,15 +7,15 @@ import com.binarapps.android.nasanetwork.model.NasaImage
 import com.binarapps.android.nasanetwork.repository.NasaRepository
 import io.reactivex.rxkotlin.subscribeBy
 
-class MainViewModel: ViewModel(){
+class MainViewModel : ViewModel() {
 
     private val repository = NasaRepository()
 
     val liveData = MutableLiveData<List<NasaImage>>()
 
-    fun fetchImages(){
-        repository.getNasaImage("earth")
-            .subscribeBy (onSuccess = {
+    fun fetchImages(query: String = "earth") {
+        repository.getNasaImage(query)
+            .subscribeBy(onSuccess = {
                 Log.d("MainViewModel(): ", it.toString())
                 liveData.value = it
             }, onError = {
