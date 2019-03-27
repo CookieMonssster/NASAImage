@@ -5,8 +5,6 @@ import com.binarapps.android.nasanetwork.retrofit.NasaApiServices
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,15 +25,6 @@ class NasaRepository : NasaRepositoryInterface {
     private fun initializeRetrofit(): NasaApiServices {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(
-                OkHttpClient.Builder()
-                    .addNetworkInterceptor(
-                        HttpLoggingInterceptor()
-                            .setLevel(HttpLoggingInterceptor.Level.BODY)
-                    )
-                    .build()
-
-            )
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
