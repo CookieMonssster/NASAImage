@@ -13,8 +13,8 @@ class MainViewModel: ViewModel(){
 
     val liveData = MutableLiveData<List<NasaImage>>()
 
-    fun fetchImages(){
-        repository.getNasaImage("earth")
+    fun fetchImages(userInput: String){
+        repository.getNasaImage(userInput)
             .subscribeBy (onSuccess = {
                 Log.d("MainViewModel(): ", it.toString())
                 liveData.value = it

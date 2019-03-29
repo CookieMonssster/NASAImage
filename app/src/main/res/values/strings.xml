@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">NASA Image</string>
-    <string name="find">Find</string>
     <string name="planet">Planet</string>
+    <string name="find">Find</string>>
 </resources>

@@ -15,12 +15,14 @@ class MainActivity : AppCompatActivity(), NasaImageAdapterListener {
 
     private val nasaAdapter = NasaImageAdapter(this)
 
+    private var inputPlanet:String = "earth"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupRecyclerView()
         viewModel.liveData.observe(this, Observer { nasaAdapter.setList(it) })
-        viewModel.fetchImages()
+        viewModel.fetchImages(getPlanet())
     }
 
     private fun setupRecyclerView() {
@@ -35,5 +37,10 @@ class MainActivity : AppCompatActivity(), NasaImageAdapterListener {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra("image", nasaImageJson)
         startActivity(intent)
+    }
+    private fun getPlanet():String
+    {
+        subQuerryButton.setOnClickListener { inputPlanet = findPlanetText.text.toString() }
+        return inputPlanet
     }
 }
